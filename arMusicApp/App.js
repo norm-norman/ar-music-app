@@ -3,7 +3,10 @@ import ExpoGraphics, { GraphicsView } from 'expo-graphics';
 import ExpoTHREE, { Renderer, THREE, AR as ThreeAR } from 'expo-three';
 import { BackgroundTexture, Camera } from 'expo-three-ar';
 import * as Permissions from 'expo-permissions';
+import { Audio } from 'expo-av';
 import * as React from 'react';
+import { Text, View, Button } from 'react-native';
+import { AntDesign as Icon } from 'react-native-vector-icons';
 import 'prop-types';
 import 'three';
 
@@ -16,13 +19,90 @@ export default class App extends React.Component {
 
   render() {
     return (
+      <View style={{flex:1}}>
       <GraphicsView
         isArEnabled
         onContextCreate={this.onContextCreate}
         onRender={this.onRender}
         onResize={this.onResize}
       />
+      <View style={{position:"absolute", bottom: "50%", right: "60%", flex: 1, flexDirection: "row"}}>
+          <Icon.Button size={100} name="caretright" backgroundColor="transparent" color="#2a2a2a00" onPress={this.onButtonPressLowTom} />
+      </View>
+      <View style={{position:"absolute", bottom: "60%", right: "40%", flex: 1, flexDirection: "row"}}>
+          <Icon.Button size={100} name="caretright" backgroundColor="transparent" color="#2a2a2a00" onPress={this.onButtonPressHighTomLeft} />
+      </View>
+      <View style={{position:"absolute", bottom: "40%", right: "20%", flex: 1, flexDirection: "row"}}>
+          <Icon.Button size={120} name="caretright" backgroundColor="transparent" color="#2a2a2a00" onPress={this.onButtonPressKick} />
+      </View>
+      <View style={{position:"absolute", bottom: "60%", right: "80%", flex: 1, flexDirection: "row"}}>
+          <Icon.Button size={80} name="caretright" backgroundColor="transparent" color="#2a2a2a00" onPress={this.onButtonPressCrash} />
+      </View>
+      <View style={{position:"absolute", bottom: "60%", right: "10%", flex: 1, flexDirection: "row"}}>
+          <Icon.Button size={80} name="caretright" backgroundColor="transparent" color="#2a2a2a00" onPress={this.onButtonPressSnare} />
+      </View>
+      </View>
     );
+  }
+
+  onButtonPressLowTom = async () => {
+    const soundObject = new Audio.Sound();
+    try {
+      await soundObject.loadAsync(require('./assets/sounds/CyCdh_K3Tom-01.mp3'));
+      await soundObject.playAsync();
+      // Your sound is playing!
+    } catch (error) {
+      // An error occurred!
+      console.warn('error playing sound')
+    }
+  }
+
+  onButtonPressHighTomLeft = async () => {
+    const soundObject = new Audio.Sound();
+    try {
+      await soundObject.loadAsync(require('./assets/sounds/CyCdh_K3Tom-04.mp3'));
+      await soundObject.playAsync();
+      // Your sound is playing!
+    } catch (error) {
+      // An error occurred!
+      console.warn('error playing sound')
+    }
+  }
+
+  onButtonPressKick = async () => {
+    const soundObject = new Audio.Sound();
+    try {
+      await soundObject.loadAsync(require('./assets/sounds/CyCdh_K3Kick-03.mp3'));
+      await soundObject.playAsync();
+      // Your sound is playing!
+    } catch (error) {
+      // An error occurred!
+      console.warn('error playing sound')
+    }
+  }
+
+  onButtonPressCrash = async () => {
+    const soundObject = new Audio.Sound();
+    try {
+      await soundObject.loadAsync(require('./assets/sounds/CyCdh_K3Crash-02.mp3'));
+      await soundObject.playAsync();
+      // Your sound is playing!
+    } catch (error) {
+      // An error occurred!
+      console.warn('error playing sound')
+    }
+  }
+
+  onButtonPressSnare = async () => {
+    const soundObject = new Audio.Sound();
+    try {
+      await soundObject.loadAsync(require('./assets/sounds/CyCdh_K3Snr-09.mp3'));
+      await soundObject.playAsync();
+      // Your sound is playing!
+    } catch (error) {
+      // An error occurred!
+      console.warn('error playing sound')
+    }
   }
 
   onContextCreate = ({
@@ -83,7 +163,7 @@ export default class App extends React.Component {
     /// Smooth mesh
   //  ExpoTHREE.utils.computeMeshNormals(mesh);
   mesh.position.y = -2;
-  mesh.position.z = -5;
+  mesh.position.z = -6;
     /// Add the mesh to the scene
     this.scene.add(mesh);
 
