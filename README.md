@@ -1,6 +1,6 @@
 # AR Drum Kit App
 ## EC 500 Final Project
-###### Jessica Barry and Gennifer Norman
+###### Jessica Barry and Norm Norman
 
 ## Summary
 
